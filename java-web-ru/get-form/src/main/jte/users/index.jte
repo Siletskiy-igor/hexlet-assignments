@@ -10,7 +10,7 @@
 </head>
 <body>
 <form method="get" >
-    <input type="search" name = "firstName">
+    <input type="search" name = "term" value="${page.getTerm()}">
     <input type="submit" value="Поиск">
     <table>
             @for(var user : page.getUsers())
