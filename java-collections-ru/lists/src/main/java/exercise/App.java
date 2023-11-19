@@ -1,27 +1,19 @@
 package exercise;
 
-import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.List;
 
 // BEGIN
 class App {
     public static boolean scrabble(String letters, String word) {
-        var lettersUniq = letters.toLowerCase();
-        char[] lettersArray = lettersUniq.toCharArray();
-        List<Character> lettersList = new ArrayList<>();
-        for (var letter : lettersArray) {
-            lettersList.add(letter);
-        }
-        var wordLettersUniq = word.toLowerCase();
-        char[] wordLettersArray = wordLettersUniq.toCharArray();
-        List<Character> wordLettersList = new ArrayList<>();
-        for (var wordLetter : wordLettersArray) {
-            wordLettersList.add(wordLetter);
-        }
+        String lowerCaseWord = word.toLowerCase();
+        ArrayList<String> lettersList = new ArrayList<>(Arrays.asList(letters.split("")));
+        ArrayList<String> wordLettersList = new ArrayList<>(Arrays.asList(lowerCaseWord.split("")));
 
-        for (var i = 0; i < wordLettersList.size(); i++) {
-            if (lettersList.contains(wordLettersList.get(i))) {
-                lettersList.remove(wordLettersList.get(i));
+        for (var wordLetter : wordLettersList) {
+            if (lettersList.contains(wordLetter)) {
+                lettersList.remove(wordLetter);
             } else {
                 return false;
             }
