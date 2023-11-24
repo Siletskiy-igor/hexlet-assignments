@@ -1,37 +1,39 @@
 package exercise;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 // BEGIN
 class App {
     public static Map<String, Integer> getWordCount(String sentence) {
-        String[] wordsArray = sentence.split(" ");
-        Map <String, Integer> wordsAndCounters = new HashMap<String, Integer>();
-        Map <String, Integer> emptyMap = new HashMap<String, Integer>();
-        if(sentence.equals("")){
-            return emptyMap;
+        Map<String, Integer> dictionary = new HashMap<>();
+        ArrayList<String> wordList = new ArrayList<>(Arrays.asList(sentence.split(" ")));
+        if (sentence.isEmpty()) {
+            return new HashMap<>();
         }
-        for (String word: wordsArray) {
-            if (!wordsAndCounters.containsKey(word)) {
-                wordsAndCounters.put(word, 1);
-            }  else {
-                wordsAndCounters.put(word, wordsAndCounters.get(word) + 1);
+
+        for (var word : wordList) {
+            if (!dictionary.containsKey(word)) {
+                dictionary.put(word, 1);
+            } else {
+                dictionary.put(word, dictionary.get(word) + 1);
             }
         }
-        System.out.println(wordsAndCounters);
-        return wordsAndCounters;
+        return dictionary;
     }
 
-    public static String toString (Map <String, Integer> wordCount ) {
-        if (wordCount.isEmpty()) {
+    public static String toString(Map<String, Integer> dictionary) {
+        if (dictionary.isEmpty()) {
             return "{}";
         }
-        var result = "{";
-        for (Map.Entry<String, Integer> pair: wordCount.entrySet()){
-            result = result + "\n" + "  " + pair.getKey() + ": " + pair.getValue();
+        
+        String result = "{";
+        for (var entry : dictionary.entrySet()) {
+            result += "\n" + "  " + entry.getKey() + ": " + entry.getValue();
         }
-        result = result + "\n" + "}";
-        System.out.println(result);
+        result += "\n" + "}";
         return result;
     }
 }
