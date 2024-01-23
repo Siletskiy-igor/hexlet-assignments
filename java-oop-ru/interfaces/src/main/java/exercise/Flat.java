@@ -2,7 +2,6 @@ package exercise;
 
 // BEGIN
 class Flat implements Home {
-
     private double area;
     private double balconyArea;
     private int floor;
@@ -15,15 +14,13 @@ class Flat implements Home {
 
     @Override
     public double getArea() {
-        return this.area + this.balconyArea;
+        return balconyArea + area;
     }
-
     @Override
     public int compareTo(Home another) {
-        double anotherArea = another.getArea();
-        if (this.getArea() < anotherArea) {
-            return -1;
-        } else if (this.getArea() > anotherArea) {
+        if (this.area > another.getArea()) {
+            return 1;
+        } else if (this.area < another.getArea()) {
             return 1;
         } else {
             return 0;
@@ -32,7 +29,8 @@ class Flat implements Home {
 
     @Override
     public String toString() {
-        return "Квартира площадью " + getArea() + " метров на " + this.floor + " этаже";
+        return "Квартира площадью " + getArea()
+                + " метров на " + floor + " этаже";
     }
 }
 // END
