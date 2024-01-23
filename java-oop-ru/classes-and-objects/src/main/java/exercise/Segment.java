@@ -4,6 +4,7 @@ package exercise;
 public class Segment {
     private Point beginPoint;
     private Point endPoint;
+    private Point midPoint;
 
     public Segment(Point beginPoint, Point endPoint) {
         this.beginPoint = beginPoint;
@@ -14,20 +15,12 @@ public class Segment {
         return beginPoint;
     }
 
-    public void setBeginPoint(Point beginPoint) {
-        this.beginPoint = beginPoint;
-    }
-
     public Point getEndPoint() {
         return endPoint;
     }
 
-    public void setEndPoint(Point endPoint) {
-        this.endPoint = endPoint;
-    }
-
     public Point getMidPoint() {
-        return new Point((endPoint.getX() + beginPoint.getX()) / 2, (endPoint.getY() + beginPoint.getY()) / 2 );
+        return new Point((Math.abs(endPoint.getX()) - Math.abs(beginPoint.getX())) / 2, (Math.abs(endPoint.getY()) - Math.abs(beginPoint.getY()))/ 2);
     }
 }
 // END
