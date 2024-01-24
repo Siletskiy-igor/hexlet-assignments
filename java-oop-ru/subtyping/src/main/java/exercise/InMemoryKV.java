@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 // BEGIN
-class InMemoryKV implements KeyValueStorage {
-    private Map<String, String> storage = new HashMap<>();
+class InMemoryKV implements KeyValueStorage{
+    private final Map<String, String> storage;
 
-    InMemoryKV(Map<String, String> dataInitial) {
-        storage.putAll(dataInitial);
+
+    public InMemoryKV(Map<String, String> initialStorage) {
+        storage = new HashMap<>(initialStorage);
     }
 
     @Override
@@ -18,21 +19,17 @@ class InMemoryKV implements KeyValueStorage {
 
     @Override
     public void unset(String key) {
-        storage.remove(key);
+         storage.remove(key);
     }
 
     @Override
     public String get(String key, String defaultValue) {
-        if (!storage.containsKey(key)) {
-            return defaultValue;
-        }
-        return storage.get(key);
+        return storage.getOrDefault(key, defaultValue);
     }
 
     @Override
     public Map<String, String> toMap() {
         return new HashMap<>(storage);
     }
-
 }
 // END
