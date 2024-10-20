@@ -1,16 +1,16 @@
 package exercise;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 
 // BEGIN
-class InMemoryKV implements KeyValueStorage{
-    private final Map<String, String> storage;
+class InMemoryKV implements KeyValueStorage {
+    Map<String, String> storage;
 
-
-    public InMemoryKV(Map<String, String> initialStorage) {
-        storage = new HashMap<>(initialStorage);
+    public InMemoryKV(Map<String, String> storage) {
+        this.storage = new HashMap<>(storage);
     }
+
 
     @Override
     public void set(String key, String value) {
@@ -19,12 +19,15 @@ class InMemoryKV implements KeyValueStorage{
 
     @Override
     public void unset(String key) {
-         storage.remove(key);
+        storage.remove(key);
     }
 
     @Override
     public String get(String key, String defaultValue) {
-        return storage.getOrDefault(key, defaultValue);
+        if (!storage.containsKey(key)) {
+            return defaultValue;
+        }
+        return storage.get(key);
     }
 
     @Override

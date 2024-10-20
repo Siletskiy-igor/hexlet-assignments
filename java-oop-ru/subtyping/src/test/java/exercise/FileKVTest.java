@@ -6,9 +6,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import com.fasterxml.jackson.databind.ObjectMapper;
-// BEGIN
+import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+// BEGIN
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 // END
 
 
@@ -24,6 +29,10 @@ class FileKVTest {
     }
 
     // BEGIN
-    
+    @Test
+    public void someTest() throws Exception {
+        KeyValueStorage file = new FileKV("src/test/resources/file", Map.of("key", "value"));
+        assertEquals("value", (file.get("key", "default")));
+    }
     // END
 }
