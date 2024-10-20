@@ -1,38 +1,29 @@
 package exercise;
 
 // BEGIN
-class Cottage implements Home{
-    private double area;
-    private int floorCount;
+public class Cottage implements Home {
 
-    public Cottage(double area, int floorCount) {
+    double area;
+    int floorCount;
+
+    public Cottage (double area, int floorCount) {
         this.area = area;
         this.floorCount = floorCount;
     }
 
     @Override
     public double getArea() {
-        return this.area;
+        return area;
     }
 
     @Override
     public int compareTo(Home another) {
-        if (this.area > another.getArea()) {
-            return 1;
-        } else if (this.area < another.getArea()) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    public int getFloorCount() {
-        return this.floorCount;
+        return Double.compare(this.getArea(), another.getArea());
     }
 
     @Override
     public String toString() {
-        return getFloorCount() + " этажный коттедж площадью " + getArea() + " метров";
+        return floorCount + " этажный коттедж площадью " + getArea() + " метров";
     }
 }
 // END

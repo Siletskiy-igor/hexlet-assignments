@@ -2,35 +2,32 @@ package exercise;
 
 // BEGIN
 class ReversedSequence implements CharSequence {
-    private String text ;
-
-    public ReversedSequence(String text) {
-        this.text = text;
+    String string;
+    public ReversedSequence (String string) {
+        this.string = string;
     }
 
     @Override
     public int length() {
-        return text.length();
-    }
-
-    @Override
-    public String toString() {
-        String result = "";
-        int i = text.length() - 1;
-        while (i > 0) {
-            result = result + text.charAt(i);
-        }
-        return result;
+        return string.length();
     }
 
     @Override
     public char charAt(int index) {
-        return text.charAt(text.charAt(text.length() - 1 - index));
+        return string.charAt(index);
     }
 
     @Override
     public CharSequence subSequence(int start, int end) {
-        return null;
+        return string.subSequence(start, end);
+    }
+
+    public String toString() {
+        String result = "";
+        for (int i = string.length() - 1; i >= 0; i--) {
+            result += string.charAt(i);
+        }
+        return result;
     }
 }
 // END
