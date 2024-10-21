@@ -3,13 +3,13 @@ package exercise.connections;
 import exercise.TcpConnection;
 
 // BEGIN
-public class Connected implements Connection {
-    private TcpConnection tcpConnection;
+public class Connected implements Connection{
 
-    public Connected(TcpConnection tcpConnection) {
-        this.tcpConnection = tcpConnection;
+    private TcpConnection connection;
+
+    public Connected(TcpConnection connection) {
+        this.connection = connection;
     }
-
     @Override
     public String getCurrentState() {
         return "connected";
@@ -17,17 +17,18 @@ public class Connected implements Connection {
 
     @Override
     public void connect() {
-        System.out.println("Error ! Connection already connected");
+        System.out.println("Error");
     }
 
     @Override
     public void disconnect() {
-        tcpConnection.setState(new Disconnected(tcpConnection));
+        this.connection.setConnection(new Disconnected(connection));
+
     }
 
     @Override
-    public void write(String str) {
-
+    public void write(String text) {
+        System.out.println(text);
     }
 }
 // END

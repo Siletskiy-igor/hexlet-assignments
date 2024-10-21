@@ -7,39 +7,36 @@ import java.util.List;
 import java.util.ArrayList;
 
 // BEGIN
-public class TcpConnection implements Connection {
-    private String ip;
-    private int port;
+public class TcpConnection {
     private Connection connection;
+    String ip;
+    int port;
 
     public TcpConnection(String ip, int port) {
+        this.connection = new Disconnected(this);
         this.ip = ip;
         this.port = port;
-        this.connection = new Disconnected(this);
     }
 
-    @Override
     public String getCurrentState() {
         return this.connection.getCurrentState();
     }
 
-    @Override
     public void connect() {
-        this.connection.connect();
+        connection.connect();
     }
 
-    @Override
     public void disconnect() {
-        this.connection.disconnect();
+        connection.disconnect();
+
     }
 
-    @Override
-    public void write(String str) {
-        this.connection.write(str);
+    public void write(String text) {
+        connection.write(text);
     }
 
-    public void setState(Connection stateObject) {
-        connection = stateObject;
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 }
 // END
