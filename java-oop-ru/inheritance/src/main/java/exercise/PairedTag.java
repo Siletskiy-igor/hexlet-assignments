@@ -1,33 +1,32 @@
 package exercise;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
 import java.util.stream.Collectors;
 
 // BEGIN
 class PairedTag extends Tag {
+    private String title;
+    private Map<String, String> attributes;
     String tagBody;
-    List<Tag> childList;
+    List<Tag> child;
 
-    public PairedTag(String tagName, Map<String, String> tagAttributes, String tagBody, List<Tag> children) {
-        super(tagName, tagAttributes);
+    public PairedTag (String title,
+                      Map<String, String> attributes,
+                      String tagBody,
+                      List<Tag> child) {
+        super(title, attributes);
         this.tagBody = tagBody;
-        this.childList = children;
+        this.child = child;
     }
-
-    public String childToString() {
-        String result = "";
-        for(Tag child: childList) {
-            result += child;
-        }
-        return result;
-    }
-
 
     @Override
     public String toString() {
-        return "<" + tagName  + attrToString() + ">" + tagBody + childToString() + "</" + tagName + ">";
+        String str = super.toString();
+        for (Tag tag: child) {
+            str += tag.toString();
+        }
+        return str + tagBody + "</" + super.getTitle() + ">";
     }
 }
 // END

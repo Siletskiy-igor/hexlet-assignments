@@ -4,26 +4,27 @@ import java.util.stream.Collectors;
 import java.util.Map;
 
 // BEGIN
-abstract class Tag{
-    String tagName;
-    Map<String, String> tagAttributes;
+class Tag {
 
-    public Tag(String tagName, Map<String, String> tagAttributes) {
-        this.tagName = tagName;
-        this.tagAttributes = tagAttributes;
+    private String title;
+    private Map<String, String> attributes;
+
+    public Tag(String title, Map<String, String> attributes) {
+        this.title = title;
+        this.attributes = attributes;
     }
 
-    public String attrToString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Map.Entry entry: tagAttributes.entrySet()) {
-            stringBuilder.append(" " + entry.getKey())
-                    .append("=")
-                    .append("\"")
-                    .append(entry.getValue())
-                    .append("\"");
+    public String toString() {
+        String res = "<" + title + " ";
+        for (var entry : attributes.entrySet()) {
+            String loop = entry.getKey() + "=" + "\"" + entry.getValue() + "\" ";
+            res += loop;
         }
-        return stringBuilder.toString();
+        return res.trim() + ">";
     }
 
+    public String getTitle() {
+        return title;
+    }
 }
 // END

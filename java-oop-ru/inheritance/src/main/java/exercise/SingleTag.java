@@ -3,18 +3,9 @@ package exercise;
 import java.util.Map;
 
 // BEGIN
-class SingleTag extends Tag{
-    public SingleTag(String tagName, Map<String, String> tagAttributes) {
-        super(tagName, tagAttributes);
+class SingleTag extends Tag {
+    SingleTag(String title, Map<String, String> attributes) {
+        super(title, attributes);
     }
-
-
-
-    @Override
-    public String toString() {
-        return "<" + tagName + attrToString() + ">";
-    }
-
-
 }
 // END
