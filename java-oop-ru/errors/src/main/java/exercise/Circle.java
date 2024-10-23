@@ -1,7 +1,7 @@
 package exercise;
 
 // BEGIN
-class Circle  {
+public class Circle {
     Point point;
     int radius;
 
@@ -11,15 +11,14 @@ class Circle  {
     }
 
     public int getRadius() {
-        return this.radius;
+        return radius;
     }
 
-    public double getSquare() throws NegativeRadiusException {
-        if (this.getRadius() < 0) {
-            throw new NegativeRadiusException("Не удалось посчитать площадь");
+    public double getSquare() throws NegativeRadiusException{
+        if (radius < 0) {
+            throw new NegativeRadiusException();
         }
-         double square = Math.PI * (this.radius * this.radius);
-         return square;
+        return Math.PI * radius * radius;
     }
 }
 // END
